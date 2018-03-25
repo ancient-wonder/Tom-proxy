@@ -10,4 +10,4 @@ scenarios:
       - function: 'randomNum'
       - get:
           url: '/listings/{{ id }}'
-      count: 20
+      count: 40
