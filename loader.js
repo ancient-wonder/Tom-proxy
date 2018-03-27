@@ -6,7 +6,7 @@ const exists = Promise.promisify(fs.stat);
 const loadBundle = function(cache, item, filename) {
   // add a small delay to ensure pipe has closed
   setTimeout(() => {
-    filename = filename.slice(0,2)+filename.slice(8)
+    console.log('loading:', filename);
     cache[item] = require(filename).default;    
   }, 0);
 };
@@ -14,7 +14,6 @@ const loadBundle = function(cache, item, filename) {
 const fetchBundles = (path, services, suffix = '', require = false) => {
   Object.keys(services).forEach(item => {
     const filename = `${path}/${item}${suffix}.js`;
-    console.log('filename',filename)
     exists(filename)
       .then(() => {
         require ? loadBundle(services, item, filename) : null;
@@ -27,10 +26,8 @@ const fetchBundles = (path, services, suffix = '', require = false) => {
           fetch(url)
             .then(res => {
               const dest = fs.createWriteStream(filename);
-              console.log('filafasd', filename)
               res.body.pipe(dest);
               res.body.on('end', () => {
-                // require = true
                 require ? loadBundle(services, item, filename) : null;
               });
             });
@@ -43,8 +40,7 @@ const fetchBundles = (path, services, suffix = '', require = false) => {
 
 module.exports = (clientPath, serverPath, services) => {
   fetchBundles(clientPath, services);
-  setTimeout(() => {
-    fetchBundles(serverPath, services, '-server', true); 
-  }, 1000);
+  fetchBundles(serverPath, services, '-server', true);
+
   return services;
 };

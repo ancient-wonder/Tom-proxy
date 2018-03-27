@@ -1,60 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <title>Seabnb</title>
-  <link href="styles.css" rel="stylesheet">
-  <!-- <link href="http://localhost:3003/dist/bundle.css" rel="stylesheet"> -->
-  <link href="http://localhost:3001/dist/bundle.css" rel="stylesheet">
-</head>
-
-<body>
-  <section class="current-listing">
-    <div class="current-listing-centered">
-      <section class="current-listing-info">
-        <div id="amenities"></div>
-        <div id="reviews"></div>
-      </section>
-      <aside class="bookings-column">
-        <!-- <div id="bookings"></div> -->
-      </aside>
-    </div>
-  </section>
-  <section class="additional-content">
-    <!-- <div id="similar-listings"></div> -->
-  </section>
-  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-
-  <!-- amenities -->
-  <script src="http://localhost:3001/dist/bundle.js"></script>
-  <!-- booking -->
-  <!-- <script src="http://localhost:3002/index_bundle.js"></script> -->
-  <!-- similar listings -->
-  <!-- <script src="http://localhost:3003/dist/bundle.js"></script> -->
-  <!-- reviews -->
-  <!-- <script src="http://localhost:3004/bundle.js"></script> -->
-
-  <script>
-    // const listingId = parseInt(window.location.pathname.split('/')[2], 10) ||
-    //                   Math.floor(Math.random() * 200);
-    const listingId = parseInt(window.location.pathname.split('/')[2], 10)
-    // ReactDOM.render(
-    //   React.createElement(SimilarListings, { id: listingId }),
-    //   document.getElementById('similar-listings'),
-    // );
-    //
-    ReactDOM.render(
-      React.createElement(Amenities, { id: listingId }),
-      document.getElementById('amenities'),
-    );
-// <!-- 
-//       ReactDOM.render(
-//         React.createElement(Bookings),
-//         document.getElementById('bookings'),
-//       ); -->
-  </script>
-</body>
-
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <title>FEC Demo</title>
+  </head>
+  <body>
+    <div id="Info"></div>
+    <div id="CountDown"></div>
+    <div id="Related"></div>
+    <div id="Reviews"></div>
+    <script src="/lib/react.development.js"></script>
+    <script src="/lib/react-dom.development.js"></script>
+    <script src="http://localhost:3001/app.js"></script>
+    <script src="http://localhost:3002/app.js"></script>
+    <script src="http://localhost:3003/app.js"></script>
+    <script src="http://localhost:3004/app.js"></script>
+    <!-- see: https://reactjs.org/docs/react-without-jsx.html -->
+    <script>
+      ReactDOM.render(
+        React.createElement(Info),
+        document.getElementById('Info')
+      );
+      ReactDOM.render(
+        React.createElement(CountDown),
+        document.getElementById('CountDown')
+      );
+      ReactDOM.render(
+        React.createElement(Related),
+        document.getElementById('Related')
+      );
+      ReactDOM.render(
+        React.createElement(Reviews),
+        document.getElementById('Reviews')
+      );
+    </script>
+  </body>
 </html>
